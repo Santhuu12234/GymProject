@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gym Workout Videos</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+
+      padding: 0;
+      background-color: rgb(195, 195, 195);
+  
+      color: #333;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .tab-btn {
+      padding: 0.5rem 1.5rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f8f8f8;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn.active {
+      background-color: #333;
+      color: #fff;
+      border-color: #333;
+    }
+
+    .videos {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .videos.active {
+      display: grid;
+    }
+
+    .video-card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+
+    .video-card iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+    }
+
+    .video-title {
+      text-align: center;
+      padding: 0.5rem;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Workout Video Library</h1>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-target="beginner">Beginner</button>
+      <button class="tab-btn" data-target="intermediate">Intermediate</button>
+      <button class="tab-btn" data-target="advanced">Advanced</button>
+    </div>
+
+    <div id="beginner" class="videos active">
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/sTANio_2E0Q" title="Full Body Stretching" allowfullscreen></iframe>
+        <div class="video-title">Full Body Stretching</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/zghuACZGqoY?si=eteAklXWdQSuqn2x" title="Beginner HIIT Workout" allowfullscreen></iframe>
+        <div class="video-title">Beginner HIIT Workout</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/qEwKCR5JCog" title="Intro to Dumbbells" allowfullscreen></iframe>
+        <div class="video-title">Intro to Dumbbells</div>
+      </div>
+    </div>
+
+    <div id="intermediate" class="videos">
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/4pKly2JojMw" title="Upper Body Strength" allowfullscreen></iframe>
+        <div class="video-title">Upper Body Strength</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/2pLT-olgUJs" title="Core & Cardio Combo" allowfullscreen></iframe>
+        <div class="video-title">Core & Cardio Combo</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/8yn-gbc1Iu0?si=DhuzcJa0jpO8J1QH" title="Resistance Band Workout" allowfullscreen></iframe>
+        <div class="video-title">Resistance Band Workout</div>
+      </div>
+    </div>
+
+    <div id="advanced" class="videos">
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/ml6cT4AZdqI" title="Intense Full Body HIIT" allowfullscreen></iframe>
+        <div class="video-title">Intense Full Body HIIT</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/1uDiW5--rAE" title="Powerlifting Basics" allowfullscreen></iframe>
+        <div class="video-title">Powerlifting Basics</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/x84r0G2gYII?si=mO0mExQZ2kZ-5GDB" title="Explosive Plyometrics" allowfullscreen></iframe>
+        <div class="video-title">Explosive Plyometrics</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const videoSections = document.querySelectorAll('.videos');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(btn => btn.classList.remove('active'));
+        tab.classList.add('active');
+
+        const target = tab.getAttribute('data-target');
+        videoSections.forEach(section => {
+          section.classList.toggle('active', section.id === target);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

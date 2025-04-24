@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Back Camera Access</title>
+</head>
+<body>
+  <h2>Open Back Camera</h2>
+  <video id="camera" autoplay playsinline style="width: 100%; max-width: 400px;"></video>
+
+  <script>
+    async function openCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { ideal: "environment" } }, // back camera
+          audio: false
+        });
+
+        const video = document.getElementById('camera');
+        video.srcObject = stream;
+      } catch (error) {
+        alert("Error accessing camera: " + error.message);
+      }
+    }
+
+    openCamera();
+  </script>
+</body>
+</html>

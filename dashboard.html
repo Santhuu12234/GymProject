@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Gym</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Add Font Awesome -->
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: rgb(195, 195, 195);
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #404040;
+            color: rgb(195, 195, 195);
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color:rgb(45, 45, 45);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            height: 65px;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .navbar.dark-mode {
+            background-color:black;
+        }
+
+        .navbar .logo {
+            color:rgb(195, 195, 195);
+            font-size: 24px;
+            font-weight: bold;
+        }
+        /* Align links to the right */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap:20px
+        }
+        .nav-links a {
+            color: rgb(195, 195, 195);
+            text-decoration: none;
+            font-size: 18px;
+            position: relative;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Button to Toggle Dark/Light Mode */
+        /* Button styles */
+        .toggle-mode-btn {
+            background-color: transparent;
+            border: none;
+            color: rgb(0, 0, 0); /* Default color for light mode */
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* Hover effect */
+        .toggle-mode-btn:hover {
+            color: black;
+        }
+
+/* Dark mode button style */
+        body.dark-mode .toggle-mode-btn {
+            color: rgb(255, 255, 255); /* Text color for dark mode */
+        }
+
+/* Dark mode button hover effect */
+        body.dark-mode .toggle-mode-btn:hover {
+            color: white; /* Hover color for dark mode */
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 16px;
+                padding: 5px;
+            }
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("safety.jpg");
+            background-size: cover;
+            background-position: center;
+            color:white;
+            text-align: center;
+            padding: 120px 20px;
+            margin-top: 70px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 5px; /* Reduced margin to decrease the gap */
+    font-size: 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none; /* Remove any border if present */
+    outline: none; /* Remove outline */
+    background: none; /* Ensures no extra shadow effect */
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    color: white;
+    width: 240px;
+    height: 50px;
+}
+
+.btn-primary:hover {
+    background-color: black;
+    transform: scale(1.05);
+}
+
+.btn-danger {
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    color: white;
+    height: 50px;
+    width: 160px;
+}
+
+.btn-danger:hover {
+    background-color: black;
+    transform: scale(1.05);
+}
+
+        /* Features Section */
+        .container {
+    max-width: 900px;
+    margin: auto;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between; /* Ensures even spacing */
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+.feature {
+    flex: 1; /* Makes sure all features take equal space */
+    text-align: center;
+    padding: 20px;
+    margin: 10px;
+    min-width: 150px; /* Set the minimum width to 230px */
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    cursor: pointer;
+}
+        .feature.dark-mode {
+            background: #232323; /* Set a darker background when dark mode is on */
+            /* Adjust the text color for contrast */
+            box-shadow: 0 0 15px 5px rgba(95, 95, 95, 0.315);
+            color: #ffffff;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        .fea {
+            color: #333;
+        }
+
+.dark-mode .fea {
+    color: #ffffff;
+}
+
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color:white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* Warning Message */
+        .warning-message {
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            height:5px;
+            margin-top: 20px;
+            padding-bottom: 2px;
+        }
+        .child{
+            color:white;
+            background: linear-gradient(to right, #6d6d6d,#535353);
+            width:50px;
+            height:50px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .con{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .contacts{
+            text-align: center;
+            width: 150px;
+        }
+        #santosh{
+            margin:3px;
+            cursor: pointer;
+        }
+        .dark-mode #santosh {
+    color: white; /* White icons in dark mode */
+}/* About Section Styles */
+.about-section {
+    background: linear-gradient(to right, #6d6d6d, #535353);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    border-radius: 20px;
+    margin: 40px auto;
+    max-width: 900px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.about-content h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.about-content p {
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* Dark Mode for About Section */
+.dark-mode .about-section {
+    background: #232323;
+    color: rgb(195, 195, 195);
+    box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    /* Button to Toggle Dark/Light Mode */
+.toggle-mode-btn {
+    background-color: transparent;
+    border: none;
+    color: rgb(0, 0, 0); /* Default color for light mode */
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative; /* Allow transformations */
+}
+
+/* Add underline effect */
+.toggle-mode-btn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.toggle-mode-btn:hover::after {
+    transform: scaleX(1);
+}
+
+/* Hover effect to increase spacing */
+.toggle-mode-btn:hover {
+    transform: translateY(-3px);
+}
+
+/* Dark mode button style */
+body.dark-mode .toggle-mode-btn {
+    color: rgb(255, 255, 255); /* Text color for dark mode */
+}
+
+/* Dark mode hover effect */
+body.dark-mode .toggle-mode-btn:hover {
+    color: white;
+}
+#santos:hover {
+    transform: translateY(-3px);
+}
+
+
+    
+
+
+        /* Phone & WhatsApp Icon */
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo"><i class="fa-solid fa-heartbeat" style="font-size: 25px;"></i> Men's Gym</div>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <a id="santos" href="#">Home</a>
+                <a id="santos" href="#features">Features</a>
+                <a id="santos" href="#about">About</a>
+                <a id="santos" href="#santosh">Contact</a>
+                <a id="santos" href="home.php"><i class="fa-solid fa-right-from-bracket"></i></a>
+            </ul>
+            <button class="toggle-mode-btn" onclick="toggleDarkMode()">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 id="S">Achieve Your Fitness Goals</h1>
+        <p>Personalized training plans, expert guidance, and the best gym experience</p>
+        <div class="Santhuu">
+        <form method="POST">
+            <div style="display: flex; gap: 1px; justify-content: center;">
+                <a href="Booking.php" class="btn btn-primary">
+                <h3><i class="fa-solid fa-calendar" style="font-size: 25px;"></i> Book a Session</h3>
+                </a>
+</button>
+<div id="helpMessage"></div> <!-- Message box to show status -->
+
+    </div>
+        </form>
+
+
+        <div id="warningMessage" class="warning-message"></div>
+    </section>
+
+    <!-- Features Section -->
+    <div id="features" class="container">
+        <div class="feature">
+        <a href="scan_tools.php" style="text-decoration: none;">
+            <div class="fea">
+                <i class="fa-solid fa-qrcode" style="font-size: 25px;" id="sant"></i><br><br>
+                Scan Tools
+            </div>
+        </a>
+        </div>
+        <div class="feature">
+        <a href="vedios.html" style="text-decoration: none;">
+            <div class="fea">
+                <i class="fa-brands fa-youtube" style="font-size: 25px;" id="sant"></i><br><br>
+                Vedios
+            </div>
+        </a>
+        </div>
+    <div class="feature"><a><div onclick="callNumber()"><i class="fa-solid fa-phone" style="font-size: 25px;"></i><br><br>Quick Contact</div></a></div>
+    <div class="feature"><a><div onclick="sendWhatsAppMessage()"><i class="fa-solid fa-message" style="font-size: 25px;"></i><br><br>Message</div></a></div>
+    </div>
+
+    <!-- About Section -->
+<section id="about" class="about-section">
+    <div class="about-content">
+        <h2>About Men's Gym</h2>
+        <p>
+            About Men's Gym
+Men's Gym is your go-to fitness hub, offering top-notch training, state-of-the-art equipment, and expert coaching to help you achieve your fitness goals.
+
+Whether you're a beginner or an advanced athlete, we provide personalized workout plans, nutritional guidance, and a motivating environment to help you stay on track.
+</p>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <div class="con">
+     <div class="contacts">
+        <br><br><br><br>
+        <i id="santosh" class="fa-brands fa-whatsapp" style="font-size: 25px;"></i>
+        <i id="santosh" class="fa-solid fa-envelope" style="font-size: 25px;"></i> 
+        <i id="santosh" class="fa-brands fa-facebook-f" style="font-size: 25px;"></i> 
+        <i id="santosh" class="fa-brands fa-twitter" style="font-size: 25px;"></i> 
+    </div>
+    </div>
+    <footer>© 2025 Men's Gym. All Rights Reserved.</footer>
+
+    <script>
+               document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("helpButton").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent page reload
+        
+        let formData = new FormData();
+        formData.append("help_request", true);
+
+        fetch("SafeSpace.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message); // Show alert message
+        })
+        .catch(error => alert("Error: Something went wrong."));
+    });
+});
+
+        window.onload = function() {
+            const warningMessage = document.getElementById('warningMessage');
+            warningMessage.innerHTML = '';
+            typeWarningMessage("⚠️GYM WARNING: Neglecting workouts weakens progress, affects endurance, and hinders results. Skipping sessions leads to muscle loss, decreased strength, and lower energy levels. Stay dedicated, stay strong, and prioritize fitness..!", warningMessage, 100);
+        };
+
+        function typeWarningMessage(message, element, speed) {
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < message.length) {
+                    element.innerHTML += message.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, speed);
+        }
+        function callNumber() {
+            window.location.href = "tel:+919705635139";
+        }
+        function sendWhatsAppMessage() {
+            window.location.href = "https://wa.me/919705635139";
+        }
+        function toggleDarkMode() {
+            // Toggle dark mode for body and navbar
+            document.body.classList.toggle('dark-mode');
+            document.querySelector('.navbar').classList.toggle('dark-mode');
+            
+            // Get all feature elements and toggle dark mode on them
+            const features = document.querySelectorAll('.feature');
+            features.forEach((feature) => {
+                feature.classList.toggle('dark-mode');
+            });
+
+            // Change the mode button icon
+            const modeButton = document.querySelector('.toggle-mode-btn');
+            if (document.body.classList.contains('dark-mode')) {
+                modeButton.innerHTML = '<i class="fa-solid fa-sun"></i>'; // Change to light mode icon
+            } else {
+                modeButton.innerHTML = '<i class="fa-solid fa-moon"></i>'; // Change to dark mode icon
+            }
+        }
+    </script>
+
+</body>
+</html>
