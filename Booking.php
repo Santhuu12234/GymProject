@@ -1,8 +1,9 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "gym_booking";
+// config - database connection
+$host = "db4free.net";
+$user = "santoshkumar1234";
+$pass = "santosh1234";
+$dbname = "santoshkumar1234";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
